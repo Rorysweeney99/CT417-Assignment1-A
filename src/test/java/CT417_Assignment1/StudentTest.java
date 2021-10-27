@@ -1,7 +1,10 @@
+// Rory Sweeney - 18342673
+
 package CT417_Assignment1;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,66 +14,73 @@ import org.junit.Test;
 import java.util.List;
 
 public class StudentTest {
-	DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
+	private DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
 	
-	//Mock Student Data 
-	String dobString = "01/01/2000";
-	DateTime dob = dtf.parseDateTime(dobString);
-	public Student stu = new Student("John", 21, dob, 123456789);
+	//Mock Student Data : 
+	// Name - "John"
+	// Age - 21
+	// DOB - 01/01/2000
+	// Student ID - 123456789
+	// Username - John21
 	
-	List<Module> testModules = Arrays.asList( new Module("SoftwareEngineering3"), 
-			new Module("AdvancedProfessionalSkills"),
-			new Module("InfomationRetrieval") );
-	
-	String startDateString = "01/09/2018";
-	DateTime startDate= dtf.parseDateTime(startDateString);
-	String endDateString = "30/05/2022";
-	DateTime endDate = dtf.parseDateTime(endDateString);
-	
-	List<Course> testCourses = Arrays.asList( new Course("CS&IT",startDate,endDate),
-			new Course("ECE",startDate,endDate) );
-	
-	
+	private Student studentTest = new Student("John", 21, dtf.parseDateTime("01/01/2000"), 123456789);
+	private Module moduleMock = new Module("Computer Science","CS123");
+	private Course courseMock = new Course("CSIT", dtf.parseDateTime("01/09/2018"), dtf.parseDateTime("07/05/2022")); 
 	
 	@Test
 	   public void testName() {	  
-	      assertEquals("John",stu.getName());
+	      assertEquals("John",studentTest.getName());
 	   }
 	
 	@Test
 	   public void testAge() {	  
-	      assertEquals(21 ,stu.getAge());
+	      assertEquals(21 ,studentTest.getAge());
 	   }
 	@Test
 	   public void testDOB() {	  
-	      assertEquals(dob,stu.getDOB());
+	      assertEquals(dtf.parseDateTime("01/01/2000"),studentTest.getDOB());
 	   }
 	@Test
 	   public void testID() {	  
-	      assertEquals(123456789,stu.getId());
+	      assertEquals(123456789,studentTest.getId());
 	   }
 	
 	@Test
 	   public void testUsername() {	  
-	      assertEquals("John123456789",stu.getUsername());
+	      assertEquals("John21",studentTest.getUsername());
 	   }
 	
 	@Test
-	   public void testStudentModules() {	  
-	      stu.addModule(new Module("SoftwareEngineering3"));
-	      stu.addModule(new Module("AdvancedProfessionalSkills"));
-	      stu.addModule(new Module("InfomationRetrieval"));
-	      assertEquals(testModules,stu.getModules());
-	   }
-	
-	@Test
-	   public void testStudentCourses() {	  
-	      stu.addCourse(new Course("CS&IT",startDate,endDate));
-	      stu.addCourse(new Course("ECE",startDate,endDate));
-	      assertEquals(testCourses,stu.getCourses());
-	   }
-	
-	
-	
+    public void testContsructor(){      
+        studentTest = new Student("John", 21, dtf.parseDateTime("01/01/2000"), 123456789);
 
+        assertNotNull(studentTest.getName());
+        assertNotNull(studentTest.getDOB());
+        assertEquals(21, studentTest.getAge());
+        assertEquals(123456789, studentTest.getId());
+    }
+	
+	@Test
+    public void testAddModulesAndCourses(){
+        studentTest.addModule(moduleMock);
+        studentTest.addCourse(courseMock);
+
+        assertTrue(studentTest.getModules().contains(moduleMock));
+        assertTrue(studentTest.getCourses().contains(courseMock));
+	}
+	
+	@Test
+    public void testRemoveModulesAndCourses(){
+        studentTest.addModule(moduleMock);
+        studentTest.addCourse(courseMock);
+
+        assertTrue(studentTest.getModules().contains(moduleMock));
+        assertTrue(studentTest.getCourses().contains(courseMock));
+
+        studentTest.removeModule(moduleMock);
+        studentTest.removeCourse(courseMock);
+
+        assertFalse(studentTest.getModules().contains(moduleMock));
+        assertFalse(studentTest.getCourses().contains(courseMock));
+    }
 }
