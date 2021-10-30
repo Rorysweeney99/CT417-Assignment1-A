@@ -12,7 +12,8 @@ import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 
 public class ModuleTest {
-	DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
+	private DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
+	
 	//Mock Module Data : 
 	// Name - "Computer Science"
 	// Module ID - "CS123"

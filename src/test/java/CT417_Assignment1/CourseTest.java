@@ -14,7 +14,8 @@ import org.junit.Test;
 import java.util.List;
 
 public class CourseTest {
-	DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
+	private DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/yyyy");
+	
 	//Mock Course Data : 
 	// Name - "CSIT"
 	// Start Date - "01/09/2018"
