@@ -41,7 +41,7 @@ public class ModuleTest {
     }
 	
 	@Test
-    public void testAddStudentsAndModules(){
+    public void testAddStudentsAndCourses(){
         moduleTest.addStudent(studentMock);
 		moduleTest.addCourse(courseMock);
         
@@ -50,7 +50,7 @@ public class ModuleTest {
 	}
 	
 	@Test
-    public void testRemoveModulesAndCourses(){
+    public void testRemoveStudentsAndCourses(){
 		moduleTest.addStudent(studentMock);
         moduleTest.addCourse(courseMock);
 

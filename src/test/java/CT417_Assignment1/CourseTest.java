@@ -59,7 +59,7 @@ public class CourseTest {
 	}
 	
 	@Test
-    public void testRemoveModulesAndCourses(){
+    public void testRemoveStudentsAndModules(){
 		courseTest.addStudent(studentMock);
         courseTest.addModule(moduleMock);
 
